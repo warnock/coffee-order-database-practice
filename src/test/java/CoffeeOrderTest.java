@@ -32,4 +32,34 @@ public class CoffeeOrderTest {
     assertEquals(1, newOrder.getStoreId());
   }
 
+  @Test
+  public void twoOrderObjectsareSame_true(){
+    CoffeeOrder newOrder1 = new CoffeeOrder ("dark", 1);
+    CoffeeOrder newOrder2 = new CoffeeOrder ("dark", 1);
+    assertTrue (newOrder1.equals(newOrder2));
+  }
+
+  @Test
+  public void savedOrderSameAsOriginal_true(){
+    CoffeeOrder newOrder = new CoffeeOrder ("dark", 1);
+    newOrder.save();
+    assertTrue(CoffeeOrder.all().get(0).equals(newOrder));
+  }
+  @Test
+  public void getCoffeeOrderId_1(){
+    CoffeeOrder newOrder = new CoffeeOrder ("dark", 1);
+    newOrder.save();
+    assertTrue(CoffeeOrder.all().get(0).getId()>0);
+  }
+
+  @Test
+  public void findOrder_newOrder2(){
+    CoffeeOrder newOrder1 = new CoffeeOrder ("dark", 1);
+    CoffeeOrder newOrder2 = new CoffeeOrder ("light", 1);
+    newOrder1.save();
+    newOrder2.save();
+    assertTrue(newOrder2.equals(CoffeeOrder.find(newOrder2.getId())));
+  }
+
+
 }
