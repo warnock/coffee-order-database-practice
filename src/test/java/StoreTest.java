@@ -16,6 +16,11 @@ public class StoreTest {
       con.createQuery(sql).executeUpdate();
     }
   }
-  
+
+  @Test
+  public void instanceofStore_true() {
+    Store newStore = new Store("name");
+    assertEquals(true, newStore instanceof Store);
+  }
 
 }
